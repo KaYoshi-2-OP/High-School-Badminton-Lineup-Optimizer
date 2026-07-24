@@ -1,0 +1,77 @@
+def normalize_gender(gender):
+    """
+    Convert different gender inputs into either 'Boys' or 'Girls'.
+    """
+    gender = gender.strip().lower()
+
+    if gender in ["boy", "boys", "male", "m", "b"]:
+        return "Boys"
+
+    if gender in ["girl", "girls", "female", "f", "g"]:
+        return "Girls"
+
+    raise ValueError(f"Invalid gender: {gender}")
+
+
+def classify_by_gender(players):
+    """
+    Separate players into boys' and girls' ladders.
+
+    Each player must contain:
+    - name
+    - gender
+    - rank
+    """
+    classified_players = {
+        "Boys": [],
+        "Girls": []
+    }
+
+    for player in players:
+        gender = normalize_gender(player["gender"])
+
+        classified_players[gender].append({
+            "name": player["name"],
+            "rank": player["rank"]
+        })
+
+    # Sort each gender by rank
+    classified_players["Boys"].sort(
+        key=lambda player: player["rank"]
+    )
+
+    classified_players["Girls"].sort(
+        key=lambda player: player["rank"]
+    )
+
+    return classified_players
+
+
+# Ask how many total players will be entered
+number_of_players = int(input("Number of players: "))
+players = []
+for player_number in range(1, number_of_players + 1):
+    print(f"\nPlayer {player_number}")
+
+    name = input("Name: ")
+    gender = input("Gender (Boys/Girls): ")
+    rank = int(input("Rank within gender: "))
+
+    players.append({
+        "name": name,
+        "gender": gender,
+        "rank": rank
+    })
+
+
+classified_players = classify_by_gender(players)
+
+print("\nBoys Rankings:")
+
+for player in classified_players["Boys"]:
+    print(f'Rank {player["rank"]}: {player["name"]}')
+
+print("\nGirls Rankings:")
+
+for player in classified_players["Girls"]:
+    print(f'Rank {player["rank"]}: {player["name"]}')
