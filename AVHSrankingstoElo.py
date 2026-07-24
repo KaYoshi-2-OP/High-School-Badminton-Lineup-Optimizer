@@ -1,4 +1,5 @@
 import math
+#defined formula calculate elo ratings
 def calculate_elo_ratings(ranked_players):
     number_of_players = len(ranked_players)
 
