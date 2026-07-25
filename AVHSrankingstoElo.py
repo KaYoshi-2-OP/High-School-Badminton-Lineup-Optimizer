@@ -1,6 +1,5 @@
 import math
-
-from classify_by_gender import classify_by_gender
+from gender_classifier import classify_by_gender
 def calculate_elo_ratings(ranked_players):
     """
     Calculate Elo ratings for one gender ladder.

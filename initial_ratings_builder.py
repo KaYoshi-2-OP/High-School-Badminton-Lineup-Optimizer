@@ -1,7 +1,7 @@
 import csv
 
-from classify_by_gender import classify_by_gender
-from rankings_to_elo import calculate_elo_ratings
+from gender_classifier import classify_by_gender
+from AVHSrankingstoElo import calculate_elo_ratings
 
 
 def load_roster(filename):
